@@ -10,14 +10,14 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.edrive.app",
+      "bundleIdentifier": "com.emreyildiz19.edrive",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Rota planlamak ve yakınındaki şarj istasyonlarını göstermek için konumun kullanılır.",
         "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
-      "package": "com.edrive.app",
+      "package": "com.emreyildiz19.edrive",
       "adaptiveIcon": {
         "backgroundColor": "#0B1220",
         "foregroundImage": "./assets/android-icon-foreground.png",
