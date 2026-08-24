@@ -1,7 +1,7 @@
 import * as Haptics from 'expo-haptics';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Linking,
@@ -11,6 +11,7 @@ import {
   Text,
   useColorScheme,
   View,
+  type DimensionValue,
 } from 'react-native';
 import MapView, { Marker, Polyline, PROVIDER_DEFAULT } from 'react-native-maps';
 import {
@@ -23,8 +24,8 @@ import { reverseGeocode } from './src/lib/api/geocode';
 import { humanError } from './src/lib/api/http';
 import { getRoute } from './src/lib/api/routing';
 import { makeEnergyContext } from './src/lib/energy';
-import { formatKm, haversineKm, regionFor, thinRoute } from './src/lib/geo';
-import { anyCompatible, effectiveKw, planTrip, projectChargers } from './src/lib/planner';
+import { haversineKm, regionFor, thinRoute } from './src/lib/geo';
+import { anyCompatible, planTrip, projectChargers } from './src/lib/planner';
 import { SettingsProvider, useSettings } from './src/store/settings';
 import { palettes, powerColor, radius, socColor, space } from './src/theme';
 import { ChargerSheet } from './src/ui/ChargerSheet';
@@ -286,7 +287,8 @@ function Screen() {
   }, [route, inCorridor, rawChargers, stopIds, settings.onlyDc, vehicle]);
 
   const busy = phase === 'routing' || phase === 'chargers';
-  const panelHeight = expanded && plan ? '76%' : plan ? '42%' : undefined;
+  const panelHeight: DimensionValue | undefined =
+    expanded && plan ? '76%' : plan ? '42%' : undefined;
 
   if (!ready) {
     return (
@@ -486,7 +488,7 @@ function Screen() {
           left: 0,
           right: 0,
           bottom: 0,
-          height: panelHeight as never,
+          height: panelHeight,
           backgroundColor: p.bg,
           borderTopLeftRadius: 24,
           borderTopRightRadius: 24,

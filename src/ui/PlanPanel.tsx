@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { needsTeslaAccessWarning } from '../lib/planner';
 import { formatKm, formatMin } from '../lib/geo';
-import { powerColor, powerLabel, radius, socColor, space, type Palette } from '../theme';
+import { powerColor, radius, socColor, space, type Palette } from '../theme';
 import { Badge, Card, Divider, Row, Stat, makeText } from './Primitives';
 import type { PlannedStop, TripPlan, Vehicle } from '../types';
 
@@ -22,11 +22,9 @@ function TripStrip({
   const t = makeText(p);
   const legs: { km: number; minSoc: number }[] = [];
   let prevKm = 0;
-  let soc = startSoc;
   for (const s of plan.stops) {
     legs.push({ km: s.charger.routeKm - prevKm, minSoc: s.arriveSoc });
     prevKm = s.charger.routeKm;
-    soc = s.departSoc;
   }
   legs.push({ km: Math.max(0.1, plan.distanceKm - plan.detourKm - prevKm), minSoc: plan.arrivalSoc });
 
@@ -354,5 +352,3 @@ export function PlanPanel({
     </ScrollView>
   );
 }
-
-export { powerLabel };

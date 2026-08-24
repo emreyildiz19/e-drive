@@ -1,4 +1,3 @@
-import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CONNECTOR_LABEL, isDcType } from '../lib/api/chargers';
 import { estimateCharge } from '../lib/energy';
